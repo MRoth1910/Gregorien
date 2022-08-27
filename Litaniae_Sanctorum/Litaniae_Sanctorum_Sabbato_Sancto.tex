@@ -1,0 +1,149 @@
+% !TEX program = LuaLaTeX+se
+% !TEX encoding = UTF-8 Unicode
+\documentclass{report}
+
+\usepackage[paperheight=9in,paperwidth=6in]{geometry}
+\usepackage[autocompile]{gregoriotex}
+\usepackage[savepos]{zref}
+\pagenumbering{gobble}
+\usepackage{fontspec}
+\usepackage{ebgaramond}
+\usepackage{multicol}
+
+\pagestyle{empty}
+\columnseprule=0.4pt
+
+\makeatletter  
+\newcounter{score}
+\newcounter{tabstop}[score]
+\newcommand{\grealign}{%
+	\@bsphack%
+	\ifgre@boxing\else%
+		\kern\gre@dimen@begindifference%
+		\stepcounter{tabstop}%
+		\expandafter\zsavepos{stop-\thescore-\thetabstop}%
+		\kern-\gre@dimen@begindifference%
+	\fi%
+	\@esphack%
+}
+
+\newcommand{\setstops}{%
+  \gdef\nstabbing@stops{%
+    \hspace*{-\oddsidemargin}\hspace{-1in}%
+    \hspace*{\zposx{stop-\thescore-1} sp}\=%
+  }%
+  \count@=\@ne
+  \loop\ifnum\count@<\value{tabstop}%
+    \begingroup\edef\x{\endgroup
+      \noexpand\g@addto@macro\noexpand\nstabbing@stops{%
+        \noexpand\hspace{-\noexpand\zposx{stop-\thescore-\the\count@} sp}%
+        \noexpand\hspace{\noexpand\zposx{stop-\thescore-\the\numexpr\count@+1} sp}\noexpand\=%
+      }%
+    }\x
+    \advance\count@\@ne
+  \repeat
+  \nstabbing@stops\kill
+}
+\makeatother
+
+\newenvironment{nstabbing}
+  {\setlength{\topsep}{0pt}%
+   \setlength{\partopsep}{0pt}%
+   \tabbing%
+   \setstops}
+  {\endtabbing\stepcounter{score}}
+
+\gresetinitiallines{0}
+\gresetlastline{justified}
+
+\begin{document}
+\gregorioscore{Litaniae_Sanctorum_Pater}%
+\begin{nstabbing}
+\>Fili \>Re-\>dém-\>ptor \>mundi \>\textbf{Dé}-\>us, \>mi-\>se-\>\textit{ré}-\>\textit{re} \>nó-\>bis.\\
+\>Spí-\>ri-\>tus \>Sáncte \>\>\textbf{Dé}-\>us, \>mi-\>se-\>\textit{ré}-\>\textit{re} \>nó-\>bis.\\
+\>Sáncta \>\>Trínitas \>\>unus \>\textbf{Dé}-\>us, \>mi-\>se-\>\textit{ré}-\>\textit{re} \>nó-\>bis.\\
+\end{nstabbing}
+
+\gregorioscore{Litaniae_Sanctorum_Sancta_Maria}
+\begin{nstabbing}
+\>Sáncta Dé-\>\>i \>\textbf{Gé}-\>nitrix, \>\>ó-\>\textit{ra} \>\textit{pro} \>nó-\>bis.\\
+\>Sáncta Vír-\>\>go \>\textbf{ví}r-\>gi-\>num, \>ó-\>\textit{ra} \>\textit{pro} \>nó-\>bis.\\
+\>Sáncte \>\>\>\textbf{Mí}cha-\>\>el, \>ó-\>\textit{ra} \>\textit{pro} \>nó-\>bis.\\
+\>Sáncte \>\>\>\textbf{Gá}bri-\>\>el, \>ó-\>\textit{ra} \>\textit{pro} \>nó-\>bis.\\
+\>Sáncte \>\>\>\textbf{Rá}pha-\>\>el, \>ó-\>\textit{ra} \>\textit{pro} \>nó-\>bis.\\
+\end{nstabbing}
+
+\gregorioscore{Litaniae_Sanctorum_Angeli}
+\noindent
+\begin{nstabbing}
+\>Omnes \>sáncti \>beatórum Spirítuum \>\>\textbf{ór}dines, \>\>\>o-\>rá-\>\textit{te} \>\textit{pro} \>nó-\>bis.\\
+\>Sáncte \>Joánnes \>\>Ba-\>\textbf{ptí}-\>\>sta, \>\>o-\>\textit{ra} \>\textit{pro} \>nó-\>bis.\\
+\>Sáncte \>\>\>\>\textbf{Jó}seph, \>\>\>\>o-\>\textit{ra} \>\textit{pro} \>nó-\>bis.\\
+\>Omnes \>sáncti \>Patriárchae et Proph-\>\>\textbf{é}-\>tae, \>\>o-\>rá-\>\textit{te} \>\textit{pro} \>nó-\>bis.\\
+\end{nstabbing}
+
+\gregorioscore{Litaniae_Sanctorum_Sancte_Petre}
+\begin{multicols}{2}
+\noindent
+Sáncte \textbf{Páu}le, \hfill o\textit{ra}.\\
+Sáncte And\textbf{ré}a, \hfill o\textit{ra}.\\
+Sáncte Jo\textbf{án}nes, \hfill o\textit{ra}.\\
+Omnes sáncti Apóstoli et \\
+	\hspace*{1cm} Evange\textbf{lí}stae, \hfill orá\textit{te}.\\
+Omnes sáncti Discípuli \textbf{Dó}mini,  \hfill orá\textit{te}.\\
+Sáncte \textbf{Sté}phane,  \hfill o\textit{ra}.\\
+Sáncte Lau\textbf{rén}ti,  \hfill o\textit{ra}.\\
+Sáncte Vin\textbf{cén}ti,  \hfill o\textit{ra}.\\
+Omnes sáncti \textbf{Már}tyres,  \hfill orá\textit{te}.\\
+Sáncte Syl\textbf{vé}ster, \hfill o\textit{ra}.\\
+Sáncte Gre\textbf{gó}ri,  \hfill o\textit{ra}.\\
+Sáncte Augu\textbf{stí}ne, \hfill o\textit{ra}.\\
+Omnes sáncti Pontífices\\
+	\hspace*{1cm} et Confes\textbf{só}res, \hfill orá\textit{te}.\\
+Omnes sáncti Do\textbf{ctó}res, \hfill orá\textit{te}.\\
+Sáncte An\textbf{tó}ni, \hfill o\textit{ra}.\\
+Sáncte Bene\textbf{dí}cte, \hfill o\textit{ra}.\\
+Sáncte Do\textbf{mí}nice, \hfill o\textit{ra}.\\
+Sáncte Fran\textbf{cí}sce, \hfill o\textit{ra}.\\
+Omnes sáncti Sacerdótes  et \\
+	\hspace*{1cm} Le\textbf{ví}tae, \hfill orá\textit{te}.\\
+Omnes sáncti Mónachi  et  \\
+	\hspace*{1cm} Ere\textbf{mí}tae, \hfill orá\textit{te}.\\
+Sáncta María Magde\textbf{lé}na, \hfill o\textit{ra}.\\
+Sáncta \textbf{A}gnes, \hfill o\textit{ra}.\\
+Sáncta Cae\textbf{cí}lia, \hfill o\textit{ra}.\\
+Sáncta \textbf{A}gatha, \hfill o\textit{ra}.\\
+Sáncta Ana\textbf{stá}sia, \hfill o\textit{ra}.\\
+Omnes sánctae Vírgines et \\
+	\hspace*{1cm}\textbf{Ví}duae, \hfill ora\textit{te}.\\
+Omnes Sáncti et Sánctae \textbf{Dé}i, \\
+	\hspace*{1cm}\hfill intercédi\textit{té} \textit{pro nóbis}.\\
+\end {multicols}
+
+\gregorioscore{Litaniae_Sanctorum_Propitius_esto}%
+\begin{nstabbing}
+\>Propí\textit{ti}\textit{us} \textbf{é}sto, párce nóbis, Dómine.\\
+\>Propí\textit{ti}\textit{us} \textbf{é}sto, exáudi nos, Dómine.\\
+\>\> Ab \textit{ó}\textit{mni} \textbf{má}lo, líbera nos, Dómine.\\
+Ab ó\textit{mni} \textit{pec}\textbf{cá}to, \hfill  líbera nos, Dómine.\\
+A mór\textit{te} \textit{per}\textbf{pé}tua, \hfill líbera nos, Dómine.\\
+Per mystérium sánctae incarnati\textit{ónis}  \textbf{tú}ae, \hfill líbera nos, Dómine.\\
+Per ad\textit{véntum} \textbf{tú}um, \hfill líbera nos, Dómine.\\
+Per nativi\textit{tátem} \textbf{tú}am,  \hfill líbera nos, Dómine.\\
+Per baptísmum et sánctum jejú\textit{nium}  \textbf{tú}um, \hfill líbera nos, Dómine.\\
+Per crúcem et passi\textit{ónem}  \textbf{tú}am, \hfill líbera nos, Dómine.\\
+Per mórtem et sepul\textit{túram} \textbf{tú}am, \hfill líbera nos, Dómine.\\
+Per sánctam resurrecti\textit{ónem} \textbf{tú}am, \hfill líbera nos, Dómine.\\
+Per admirabilem ascensi\textit{ónem} \textbf{tú}am, \hfill líbera nos, Dómine.\\
+Per advéntum Spíritus Sán\textit{cti}  \textit{Pa}rácliti, \textbf \hfill líbera nos, Dómine.\\
+In di\textit{e} \textit{ju}\textbf{dí}cii, \hfill líbera nos, Dómine.\\
+\end{nstabbing}
+
+\gregorioscore{Litaniae_Sanctorum_Peccatores}%
+\begin{nstabbing}
+Ut nó\textit{bis} \textbf{pár}cas, te rógamus áudi nos.\\
+Ut Ecclésiam túam sánctam ' régere et conserváre \textit{di}\textbf{gne}ris,\\
+\hspace*{1cm} te rógamus áudi nos.
+\end{nstabbing}
+
+\end{document}

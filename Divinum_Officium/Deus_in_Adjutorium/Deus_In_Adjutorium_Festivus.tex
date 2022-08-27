@@ -1,0 +1,34 @@
+\documentclass[11pt]{article}
+
+\usepackage[paperheight=9in,paperwidth=6in]{geometry}
+\pagenumbering{gobble}
+\usepackage{fontspec}
+\setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
+ItalicFont= EB Garamond Italic,
+BoldFont= EB Garamond Bold,
+Ligatures=Rare,
+StylisticSet=6,
+Numbers=Proportional,
+Numbers=OldStyle]
+
+\usepackage[autocompile]{gregoriotex}
+\def\GreStar{*}
+
+\begin{document}
+\greannotation{Tonus festivus}
+\greannotation{℣.}
+\grechangestyle{initial}{\fontsize{32}{32}\selectfont}
+\gregorioscore{Deus_in_Adjutorium_Festivus}
+\medskip
+\emph{A Septuagesima usque ad Pascha, loco} Allelúia, \emph{dicitur:}
+\vspace{-8pt}
+\gresetinitiallines{0}
+\gregorioscore{Laus_tibi_Domine}
+\bigskip
+\greannotation{1. Ant.}
+\greannotation{7. c 2}
+\gresetinitiallines{1}
+\grechangestyle{initial}{\fontsize{32}{32}\selectfont}
+\gregorioscore{Dixit_Dominus_Incipit}
+
+\end{document}

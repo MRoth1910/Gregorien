@@ -1,0 +1,132 @@
+\documentclass[11pt]{book}
+\usepackage[paperheight=9in,paperwidth=6in]{geometry}
+%\pagenumbering{gobble}
+\usepackage{fontspec}
+\usepackage{fancyhdr}
+\usepackage[compact,uppercase]{titlesec}
+\usepackage{needspace}
+
+\usepackage[autocompile]{gregoriotex}
+\grechangestyle{abovelinestext}{\it\fontsize{9}{11}\selectfont}
+\def\GreStar{*}
+\def\GreDagger{†}
+
+\newcommand{\smallscore}[2][y]{
+  \gresetinitiallines{0}
+  \gregorioscore{psaumes/#2}
+  \gresetinitiallines{1}
+}
+
+\newcommand{\vscore}[2][y]{
+  \gresetinitiallines{0}
+  \gregorioscore{Versus_in_Festo/#2}
+  \gresetinitiallines{1}
+}
+%%% Font %%%
+\setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
+ItalicFont= EB Garamond Italic,
+BoldFont= EB Garamond Bold,
+Ligatures=Rare,
+StylisticSet=6,
+Numbers=Proportional,
+Numbers=OldStyle]
+
+\newcommand{\rubrique}[1]{{\fontsize{9}{11}\selectfont\textit{#1}}}
+\newcommand{\normaltext}[1]{{\normalfont\fontsize{9}{11}\selectfont{#1}}}
+
+\newcommand{\smalltitle}[1]{
+\needspace{5\baselineskip}
+\vspace{\baselineskip}
+ {\centering #1\par}
+}
+%\renewenvironment{center}[1]{%
+%  \begin{center}
+%  {#1} 
+%\vspace{-3mm}}{%
+%  \end{center}
+%}
+%% Input Commands %%%
+\NewDocumentCommand{\pstext}{ m }{%
+    \smallskip%
+    \noindent%
+    \input{Psaumes/#1}}
+    
+    \NewDocumentCommand{\Capitulum}{ m }{%
+    \input{Capitulum/#1}}
+    %%%% Headers%%%%
+    \pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+
+%\fancyhead[RO]{\small\thepage}
+%\fancyhead[LE]{\small\thepage}
+
+\fancyhead[RO]{\small\rightmark\hspace{0.5cm}\thepage}
+\fancyhead[LE]{\small\thepage\hspace{0.5cm}\leftmark}
+
+\newcommand{\setheaders}[2]{
+	\renewcommand{\rightmark}{{\sc#2}}
+	\renewcommand{\leftmark}{{\sc#1}}
+}
+\setheaders{}{}
+
+%% TITLE Commands %%%%
+\titleformat{\section}[display]{\large\filcenter\sc\addfontfeature{LetterSpace=3.0}}{}{}{}
+\setcounter{secnumdepth}{0}
+\titlespacing{\section}{0pt}{*0}{*0}
+
+\newcommand{\officiumtitulum}[1]{
+%  \newpage
+%  \thispagestyle{empty}
+  \setheaders{{{\scshape\addfontfeature{LetterSpace=3.0}} Infra Octavam Corporis Christæ}}{{{\scshape\addfontfeature{LetterSpace=3.0} #1}}}
+ \section{
+  \begin{center}
+  {\large#1}
+  \end{center}
+}}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\greannotation{Tonus solemnior}
+\greannotation{℣.}
+\grechangestyle{initial}{\fontsize{32}{32}\selectfont}
+\gregorioscore{Toni_Communes/Deus_in_adjutorium_tonus_solemnior}
+\vspace{2mm}
+\rubrique{vel}
+\greannotation{Tonus festivus}
+\greannotation{℣.}
+\gregorioscore{Toni_Communes/Deus_In_Adjutorium_Festivus}
+
+\officiumtitulum{%
+In I. Vesperis.}
+\vspace{-0.5cm}
+
+%\section{\begin{center}
+%In I. Vesperis.
+%\end{center}}
+%\vspace{-0.5cm}
+
+\Capitulum{Capitulum_Dominicis}
+
+\grechangedim{maxbaroffsettextleft}{0cm}{fixed}
+\greannotation{1. Ant.}
+\greannotation{1. f}
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\gregorioscore{Sacerdos_in_aeternum/Sacerdos_in_aeternum}
+\begin{center}
+Psalmus 109.
+\end{center}
+\vspace{-3mm}
+\smallscore{109_1f}
+\pstext{109_mode_1}
+
+\grechangedim{maxbaroffsettextleft}{0cm}{fixed}
+\greannotation{2. Ant.}
+\greannotation{2. D}
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\gregorioscore{Miserator_dominus/Miserator_dominus}
+
+\end{document}

@@ -1,0 +1,29 @@
+\documentclass[11pt]{article}
+\usepackage[paperheight=9in,paperwidth=6in]{geometry}
+\pagenumbering{gobble}
+\usepackage{fontspec}
+
+\usepackage[autocompile]{gregoriotex}
+
+\setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
+ItalicFont= EB Garamond Italic,
+BoldFont= EB Garamond Bold,
+Ligatures=Rare,
+StylisticSet=6,
+Numbers=Proportional,
+Numbers=OldStyle]
+
+\begin{document}
+\begin{center}\hspace{20mm}{In Festis Solemnibus.}\newline{In II. Vesperis}\end{center}
+\vspace{-8pt}
+\greannotation{6.}
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\gregorioscore{Benedicamus_Domino_Solemnis_mode_6}
+\medskip
+\grechangestyle{abovelinestext}{\begin{footnotesize}\begin{itshape}}[\end{itshape}\end{footnotesize}]
+%\grechangedim{maxbaroffsettextleft}{0cm}{fixed}
+\greannotation{5.}
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\gregorioscore{Benedicamus_Domino_Solemnis_mode_5}
+
+\end{document}
