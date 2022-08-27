@@ -1,0 +1,8 @@
+*.glog
+*.gtex
+*.log
+*.aux
+*.gaux
+.DS_Store
+*.synctex.gz
+*.synctex.gz(busy)
