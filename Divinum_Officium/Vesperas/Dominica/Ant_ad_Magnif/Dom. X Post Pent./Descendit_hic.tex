@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+
+\usepackage[paperheight=9in,paperwidth=6in]{geometry}
+\pagenumbering{gobble}
+\usepackage{fontspec}
+\setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
+ItalicFont= EB Garamond Italic,
+BoldFont= EB Garamond Bold,
+Ligatures=Rare,
+StylisticSet=6,
+Numbers=OldStyle]
+\usepackage[autocompile]{gregoriotex}
+\def\GreStar{*}
+
+\begin{document}
+\greannotation{Ad Magnif.}
+\greannotation{Ant. 8. G}
+\grechangedim{maxbaroffsettextleft}{0.3cm}{fixed}
+\grechangedim{maxbaroffsettextright}{0cm}{fixed}
+\grechangedim{annotationraise}{0.001 mm}{scalable}
+\grechangestyle{initial}{\fontsize{32}{32}\selectfont}
+\gregorioscore{Descendit_hic}
+\end{document}

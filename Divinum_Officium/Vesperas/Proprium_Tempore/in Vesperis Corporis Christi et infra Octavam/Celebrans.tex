@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\usepackage[paperheight=9in,paperwidth=6in]{geometry}
+\pagenumbering{gobble}
+\usepackage{fontspec}
+\usepackage[autocompile]{gregoriotex}
+\def\GreStar{*}
+\def\GreDagger{†}
+
+\setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
+ItalicFont= EB Garamond Italic,
+BoldFont= EB Garamond Bold,
+Ligatures=Rare,
+StylisticSet=6,
+Numbers=Proportional,
+Numbers=OldStyle]
+
+\begin{document}
+
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\greannotation{℣.}
+\gregorioscore{Toni_Communes/Deus_In_Adjutorium_Festivus}
+
+\greannotation{1. Ant.}
+\greannotation{1. f}
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\gregorioscore{Sacerdos_in_aeternum/Sacerdos_in_aeternum}
+
+\begin{center}
+In I. Vesperis/Commemoratio Octavæ
+\end{center}
+
+\grechangedim{annotationseparation}{0.03cm}{fixed}
+\greannotation{Ad Magnif.}
+\greannotation{Ant. 6. F}
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\gregorioscore{O_quam_suavis/O_quam_suavis}
+
+\begin{center}
+In II. Vesperis atque Commemoratio Octavæ
+\end{center}
+
+\grechangedim{annotationseparation}{-0.01cm}{fixed}
+\greannotation{Ad Magnif.}
+\greannotation{Ant. 5.}
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\gregorioscore{O_sacrum_convivium/O_sacrum_convivium}
+
+\begin{center}
+Dominica infra octavam Corporis Christi
+\vspace{-\topsep}
+\end{center}
+\grechangedim{annotationseparation}{-0.01cm}{fixed}
+\greannotation{Ad Magnif.}
+\greannotation{Ant. 1. a}
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\gregorioscore{Exi_cito/Exi_cito}
+
+\greannotation{2.}
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\gregorioscore{Toni_Communes/Benedicamus_domino_Semiduplex_Vesp}
+
+\enddocument
