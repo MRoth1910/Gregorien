@@ -2,8 +2,10 @@
 \usepackage[ a5paper,hmargin = {2cm},height=6in]{geometry}
 \pagenumbering{gobble}
 \usepackage{fontspec}
+\usepackage[english, ecclesiasticlatin.usej]{babel}
+     \babelprovide[hyphenrules=liturgicallatin]{ecclesiasticlatin}
 \usepackage{multicol}
-%\setlength{\columnsep}{0cm}
+\setlength{\columnsep}{1em}
 \usepackage[autocompile]{gregoriotex}
 \def\GreStar{*}
 \def\GreDagger{†}
@@ -33,7 +35,7 @@ Quǽsumus, omnípotens Deus, ut fámulus tuus Carólus Rex no-ster, qui tua mise
 
 ℟. Amen. \vfill\null
 \columnbreak
-
+\selectlanguage{english}
 Let us pray.
 
 We beseech thee, almighty God, that thy servant Charles our King, who through thy mercy has undertaken the government of this realm, may also receive an increase of all virtues. Fittingly adorned with these, may he be able to shun all evildoing, (in time of war: to vanquish his enemies,) and, together with the Queen his consort and the royal family, being in thy grace, to come unto thee who art the way, the truth, and the life. Through Christ our Lord. 
