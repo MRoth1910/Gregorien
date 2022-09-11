@@ -1,8 +1,0 @@
-return {
- ["filename"]="/Users/matthewroth/Documents/Gregorio and GABC/Divinum Officium/Vesperas/Dominica/Dom. I Adventus/Ecce Dominus/Ecce_dominus_veniet.tex",
- ["lastcontext"]="\nl.1 \\documentclass\n                 [11pt]{article}",
- ["lastluaerror"]="?",
- ["lasttexerror"]="! Undefined control sequence",
- ["linenumber"]=1,
- ["offset"]=10,
-}
