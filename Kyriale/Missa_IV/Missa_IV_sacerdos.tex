@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+\usepackage[paperheight=8.5in,paperwidth=5.5in]{geometry}
+\pagenumbering{gobble}
+\usepackage{fontspec}
+\usepackage[ecclesiasticlatin.usej]{babel}
+     \babelprovide[hyphenrules=liturgicallatin]{ecclesiasticlatin}
+\usepackage[autocompile]{gregoriotex}
+\def\GreStar{*}
+\def\GreDagger{†}
+
+\gresetheadercapture{annotation}{greannotation}{string}
+
+\setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
+ItalicFont= EB Garamond Italic,
+BoldFont= EB Garamond Bold,
+Ligatures=Rare,
+StylisticSet=6,
+Numbers=Proportional,
+Numbers=OldStyle]
+
+\newcommand{\rubrique}[1]{{\fontsize{9}{11}\selectfont\textit{#1}}}
+
+\begin{document}
+
+\rubrique{Gloria IV}
+\greannotation{4.}
+\gabcsnippet{(c4) GLó(cd!fv)ri(f)a(f') in(e) ex(f)cél(g_[oh:h])sis(e) De(gvFE)o.(e.) (::)}
+\bigskip
+
+\rubrique{Ite IV}
+\greannotation{1.}
+\gabcsnippet{(c4) I(h)te,(hghjvIH'Gh.) (,) (hvGF'De.) (,) (eg/hd./egF'E) mis(f')sa(d) est.(d.) (::)}
+\bigskip
+
+\rubrique{Credo I}
+\greannotation{4.}
+\gabcsnippet{(c4) CRe(g)do(e') in(f) u(d)num(e') De(g)um,(h.) (::)}
+
+
+
+\enddocument
