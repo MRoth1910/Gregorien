@@ -3,6 +3,11 @@
 \usepackage[paperheight=9in,paperwidth=6in]{geometry}
 \pagenumbering{gobble}
 \usepackage{fontspec}
+\usepackage[ecclesiasticlatin.usej]{babel}
+     \babelprovide[hyphenrules=latin]{ecclesiasticlatin}
+\usepackage[autocompile]{gregoriotex}
+\def\GreStar{*}
+
 \setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
 ItalicFont= EB Garamond Italic,
 BoldFont= EB Garamond Bold,
@@ -10,13 +15,10 @@ Ligatures=Rare,
 StylisticSet=6,
 Numbers=OldStyle]
 
-\usepackage[autocompile]{gregoriotex}
-\def\GreStar{*}
-
 \begin{document}
+\grechangedim{annotationseparation}{-0.01cm}{fixed}
 \greannotation{Ad Magnif.}
 \greannotation{Ant. 3. a}
-\grechangedim{annotationraise}{0.001 mm}{scalable}
-\grechangestyle{initial}{\fontsize{32}{32}\selectfont}
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
 \gregorioscore{Intravit_Autem_Rex}
 \end{document}
