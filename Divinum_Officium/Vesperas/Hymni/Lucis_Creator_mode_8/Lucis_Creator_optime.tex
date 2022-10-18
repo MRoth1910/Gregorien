@@ -3,6 +3,9 @@
 \usepackage[paperheight=9in,paperwidth=6in]{geometry}
 \pagenumbering{gobble}
 \usepackage{fontspec}
+\usepackage[ecclesiasticlatin.usej]{babel}
+     \babelprovide[hyphenrules=latin]{ecclesiasticlatin}
+     
 \setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
 ItalicFont= EB Garamond Italic,
 BoldFont= EB Garamond Bold,
@@ -12,9 +15,20 @@ Numbers=OldStyle,
 Numbers=Proportional]
 \usepackage[autocompile]{gregoriotex}
 
+\newcommand{\rubrique}[1]{{\fontsize{9}{11}\selectfont\textit{#1}}}
+\newcommand{\normaltext}[1]{{\normalfont\fontsize{9}{11}\selectfont{#1}}}
+
+
 \begin{document}
-\begin{center}{Hymnus}\end{center}
+\begin{center}{Hymnus.}\end{center}
 \greannotation{8.}
 \grechangestyle{initial}{\fontsize{28}{28}\selectfont}
 \gregorioscore{Lucis_Creator_optime}
+
+\smallskip
+\rubrique{Quando fit Commemoratio B.M.V., dicitur doxologia \normaltext{Jésu, tíbi sit glória,} sed non mutatur tonus hymni.}
+\gresetinitiallines{0}
+\gregorioscore{Lucis_Creator_Commemoratio_BMV}
+\vspace{2mm}
+℣. Dirigátur.
 \enddocument
