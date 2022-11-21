@@ -1,0 +1,186 @@
+\documentclass[11pt]{book}
+\usepackage[a5paper]{geometry}
+%\pagenumbering{gobble}
+\usepackage{fontspec}
+\usepackage[ecclesiasticlatin.usej]{babel}
+     \babelprovide[hyphenrules=latin]{ecclesiasticlatin}
+% \usepackage{multicol}
+\usepackage{paracol}
+     \footnotelayout{m}
+\usepackage{fancyhdr}
+\usepackage{needspace}
+\usepackage[compact]{titlesec}
+%\usepackage{xcolor}
+%\usepackage{xstring}
+\usepackage{enumitem}
+%\usepackage{hyperref}
+%\usepackage{refcount}
+
+\usepackage[autocompile]{gregoriotex}
+\grechangestyle{abovelinestext}{\it\fontsize{9}{11}\selectfont}
+\def\GreStar{*}
+\def\GreDagger{†}
+
+\newcommand{\smallscore}[2][y]{
+  \gresetinitiallines{0}
+  \gregorioscore{partitions/#2}
+  \gresetinitiallines{1}
+}
+\gresetheadercapture{annotation}{greannotation}{string}
+
+%%% Font %%%
+\setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
+ItalicFont= EB Garamond Italic,
+BoldFont= EB Garamond Bold,
+Ligatures=Rare,
+StylisticSet=6,
+Numbers=Proportional,
+Numbers=OldStyle]
+
+%\newcommand{\rougue}[1]{\textcolor{gregoriocolor}{\textit{#1}}}
+\newcommand{\rubrique}[1]{{\fontsize{9}{11}\selectfont\textit{#1}}}
+\newcommand{\tpalleluia}[1]
+	{(\textit{T.P.} Allelúia.)}
+\newcommand{\normaltext}[1]{{\normalfont\fontsize{9}{11}\selectfont{#1}}}
+\newcommand{\rubriquegras}[1]{{\fontsize{9}{11}\selectfont\textbf{#1}}}
+
+\newcommand{\espaceponctuation}{\hspace{0.10em}} %%this value seems more balanced with this font than the definition provided in the liturgicallatin documentation.
+
+\NewDocumentCommand{\pstexte}{ m }{%
+    \smallskip%
+    \noindent%
+    \begin{itemize}[%
+    		label=\null, %
+			leftmargin=0pt, %
+			itemindent=0mm, %
+			labelsep=0pt, %
+			labelwidth=0pt, %
+			rightmargin=0pt, %
+			parsep=0pt, %
+			topsep=0pt, %
+			itemsep=0pt]%
+    \input{psaumes/#1}
+    \end{itemize}}
+    
+ \NewDocumentCommand{\Capitulum}{ m }{%
+    \input{Capitulum/#1}}
+    %%%% Headers%%%%
+    \pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+
+
+%\fancyhead[RO]{\small\thepage}
+%\fancyhead[LE]{\small\thepage}
+
+\fancyhead[RO]{\small\rightmark\hspace{0.5cm}\thepage}
+\fancyhead[LE]{\small\thepage\hspace{0.5cm}\leftmark}
+
+\newcommand{\setheaders}[2]{
+	\renewcommand{\rightmark}{{\sc#2}}
+	\renewcommand{\leftmark}{{\sc#1}}
+}
+\setheaders{}{}
+
+
+%% TITLE Commands %%%%
+\titleformat{\section}[display]{\large\filcenter\sc\addfontfeature{LetterSpace=3.0}}{}{}{}
+\titleformat{\subsection}[display]{\large\filcenter\sc\addfontfeature{LetterSpace=3.0}}{}{}{}
+\setcounter{secnumdepth}{0}
+\titlespacing{\section}{0pt}{*0}{*0}
+
+\newcommand{\officiumtitulum}[1]{
+%  \newpage
+%  \thispagestyle{empty}
+  \setheaders{{{\scshape\addfontfeature{LetterSpace=3.0}}Officium.}}{{{\scshape\addfontfeature{LetterSpace=3.0} #1}}}
+ \section{
+  \begin{center}
+  {\large#1}
+  \end{center}
+}}
+
+\newcommand{\subtitulum}[1]{
+ \subsection{
+  \begin{center}
+  {\large#1}
+  \end{center}
+}}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\greannotation{5.}
+\gregorioscore{an--alma_redemptoris--solesmes_1961}
+
+\begin{sloppypar}
+ \begin{paracol}{2}
+  \setlength{\columnsep}{1.5em} %EB Garamond, Octavio Pardo; should define this so that there are no magic numbers
+\input{Alma_Redemptoris_la}
+
+%\columnbreak
+\switchcolumn
+\input{Alma_Redemptoris_en}
+\end{paracol}
+\end{sloppypar}
+%\end{multicols}
+\smallskip
+
+\greannotation{6.}
+\gregorioscore{an--ave_regina_caelorum--solesmes_1961}
+
+\begin{sloppypar}
+ \begin{paracol}{2}
+  \setlength{\columnsep}{1.5em} %EB Garamond, Octavio Pardo; should define this so that there are no magic numbers
+\input{Ave_Regina_la}
+
+%\columnbreak
+\switchcolumn
+\input{Ave_Regina_en}
+\end{paracol}
+\end{sloppypar}
+%\end{multicols}
+\smallskip
+
+\greannotation{6.}
+\gregorioscore{an--regina_caeli--solesmes}
+
+\begin{sloppypar}
+ \begin{paracol}{2}
+  \setlength{\columnsep}{1.5em} %EB Garamond, Octavio Pardo; should define this so that there are no magic numbers
+\input{Regina_Caeli_la}
+
+%\columnbreak
+\switchcolumn
+\input{Regina_Caeli_en}
+\end{paracol}
+\end{sloppypar}
+%\end{multicols}
+\smallskip
+
+\greannotation{1.}
+\gregorioscore{an--salve_regina--solesmes}
+
+\begin{sloppypar}
+ \begin{paracol}{2}
+  \setlength{\columnsep}{1.5em} %EB Garamond, Octavio Pardo; should define this so that there are no magic numbers
+\input{Salve_Regina_la}
+
+%\columnbreak
+\switchcolumn
+\input{Salve_Regina_en}
+\end{paracol}
+\end{sloppypar}
+%\end{multicols}
+\smallskip
+
+%\begin{center}
+%Psalmus
+%\end{center}
+%\vspace{-3mm}
+%\smallscore{}
+%\pstext{}
+
+\enddocument
