@@ -1,0 +1,26 @@
+% !TEX TS-program = LuaLaTeX+se
+\documentclass[12pt]{book}
+
+\input{commonheaders_letterpaper}
+\def\blankpage{%
+      \clearpage%
+      \thispagestyle{empty}%
+      \addtocounter{page}{0}%
+      \null%
+      \clearpage}
+
+\begin{document}
+
+\input{title_lectionorum}
+
+\mainmatter
+
+\input{lect_fer_v}
+
+\input{lect_fer_vi}
+
+\input{lect_sab}
+
+\input{index}
+
+\end{document}

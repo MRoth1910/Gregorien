@@ -1,0 +1,11 @@
+\babel@toc {ecclesiasticlatin}{}\relax 
+\contentsline {section}{Feria V in Cœna Domini.}{1}{section*.1}%
+\contentsline {subsection}{Ad Matutinum.}{1}{subsection*.2}%
+\contentsline {subsection}{Ad Laudes.}{20}{subsection*.3}%
+\contentsline {section}{Feria VI in Parasceve.}{28}{section*.6}%
+\contentsline {subsection}{Ad Matutinum.}{28}{subsection*.7}%
+\contentsline {subsection}{Ad Laudes.}{52}{subsection*.8}%
+\contentsline {section}{Sabbato Sancto.}{59}{section*.9}%
+\contentsline {subsection}{Ad Matutinum.}{59}{subsection*.10}%
+\contentsline {subsection}{Ad Laudes.}{79}{subsection*.11}%
+\thispagestyle {empty}

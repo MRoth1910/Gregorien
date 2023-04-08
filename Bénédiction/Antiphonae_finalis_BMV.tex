@@ -37,6 +37,8 @@ StylisticSet=6,
 Numbers=Proportional,
 Numbers=OldStyle]
 
+\AtBeginDocument{\setlength{\parindent}{1em}} %EB Garamond (Octavio Pardo) 
+
 %\newcommand{\rougue}[1]{\textcolor{gregoriocolor}{\textit{#1}}}
 \newcommand{\rubrique}[1]{{\fontsize{9}{11}\selectfont\textit{#1}}}
 \newcommand{\tpalleluia}[1]
@@ -110,26 +112,46 @@ Numbers=OldStyle]
 
 \begin{document}
 
+\twosided[pc] %%% why this goes at beginning, IDK, unclear what p does exactly, but it's necessary for flipping columns correctly. ; it's unclear why this goes BEFORE everything else and not when activating the environment. %% It's OK for paper booklets to not switch, but it's probably best practice to switch.
+
 \thispagestyle{empty}
 
+{\centering{Alma Redemptoris Mater.}\par}
+
+\rubrique{¶ From Vespers of the Saturday before the I Sunday of Advent to Vespers of February 2 inclusive.}
+
 \greannotation{5.}
-\gregorioscore{an--alma_redemptoris--solesmes_1961}
+\gregorioscore{partitions/an--alma_redemptoris--solesmes_1961}
+\vspace{1ex}
+
+{\centering{Simple Tone.}\par}
+\greannotation{5.}
+\gregorioscore{partitions/an--alma_redemptoris_simple_solesmes}
 
 \begin{sloppypar}
  \begin{paracol}{2}
   \setlength{\columnsep}{1.5em} %EB Garamond, Octavio Pardo; should define this so that there are no magic numbers
-\input{Alma_Redemptoris_la}
+\input{Alma_Redemptoris_en}
 
 %\columnbreak
 \switchcolumn
-\input{Alma_Redemptoris_en}
+\input{Alma_Redemptoris_la}
 \end{paracol}
 \end{sloppypar}
 %\end{multicols}
 \smallskip
 
+{\centering{Ave Regina Cælorum.}\par}
+
+\rubrique{¶ After the Purification, that is, from Compline of February 2 even if the feast is transferred, until Compline of Wednesday in Holy Week.}
+
 \greannotation{6.}
-\gregorioscore{an--ave_regina_caelorum--solesmes_1961}
+\gregorioscore{partitions/an--ave_regina_caelorum--solesmes_1961}
+\vspace{1ex}
+
+{\centering{Simple Tone.}\par}
+\greannotation{6.}
+\gregorioscore{partitions/an--ave_regina_caelorum_simple_tone--solesmes}
 
 \begin{sloppypar}
  \begin{paracol}{2}
@@ -144,8 +166,17 @@ Numbers=OldStyle]
 %\end{multicols}
 \smallskip
 
+{\centering{Regina Cæli.}\par}
+
+\rubrique{¶ From Compline of Holy Saturday until None of Saturday after Pentecost inclusive.}
+
 \greannotation{6.}
-\gregorioscore{an--regina_caeli--solesmes}
+\gregorioscore{partitions/an--regina_caeli--solesmes}
+\vspace{1ex}
+
+{\centering{Simple Tone.}\par}
+\greannotation{6.}
+\gregorioscore{partitions/an--regina_caeli_simple_tone--solesmes}
 
 \begin{sloppypar}
  \begin{paracol}{2}
@@ -160,8 +191,17 @@ Numbers=OldStyle]
 %\end{multicols}
 \smallskip
 
+{\centering{Salve Regina.}\par}
+
+\rubrique{¶ From Vespers of the Holy Trinity until None of the Saturday before Advent inclusive.}
+
 \greannotation{1.}
-\gregorioscore{an--salve_regina--solesmes}
+\gregorioscore{partitions/an--salve_regina--solesmes}
+\vspace{1ex}
+
+{\centering{Simple Tone.}\par}
+\greannotation{5.}
+\gregorioscore{partitions/an--salve_regina_simple_tone_solesmes}
 
 \begin{sloppypar}
  \begin{paracol}{2}
