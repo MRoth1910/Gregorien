@@ -1,0 +1,69 @@
+% !TEX TS-program = lualatexmk
+%%because this is on A5 paper, as the UK doesn't use American letter, I left the messy preamble but added commands to make it better with 2 years of LaTeX under my belt.
+
+% !TEX TS-program = lualatexmk
+% !TEX parameter =  --shell-escape
+\documentclass[11pt]{article}
+\usepackage[ a5paper,hmargin = {2cm},height=6in]{geometry}
+\pagenumbering{gobble}
+\usepackage{fontspec}
+\usepackage[english, ecclesiasticlatin.usej]{babel}
+     \babelprovide[hyphenrules=liturgicallatin]{ecclesiasticlatin}
+\usepackage{paracol}
+\usepackage{lettrine}
+\setlength{\columnsep}{1em}
+\usepackage[autocompile]{gregoriotex}
+\def\GreStar{*}
+\def\GreDagger{†}
+
+     \NewDocumentCommand{\gscore}{O{}mm}{%
+ \greannotation{#1}%
+\greannotation{#2}%
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}%
+ \gregorioscore{partitions/#3}}
+
+\sloppy
+
+\AtBeginDocument{\setlength{\parindent}{1em}} %% should set 1em to EB Garamond not Computer Modern.
+
+\setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
+ItalicFont= EB Garamond Italic,
+BoldFont= EB Garamond Bold,
+Ligatures=Rare,
+%StylisticSet=6,
+Numbers=Proportional,
+Numbers=OldStyle]
+
+\newcommand{\specialcharhsep}{3mm} % space after invoking R/ or V/ or A/ outside rubrics
+%\newcommand{\vv}{\textcolor{gregoriocolor}{\fontspec[Scale=\customscale]{Charis SIL}℣.\nolinebreak[4]\hspace{\specialcharhsep}\nolinebreak[4]}} %% format from MB
+
+\newcommand{\vv}{{\normalfont ℣.\nolinebreak[4]\hspace{\specialcharhsep}\nolinebreak[4]}}
+\newcommand{\rr}{{\normalfont ℟.\nolinebreak[4]\hspace{\specialcharhsep}\nolinebreak[4]}}
+
+\NewDocumentCommand{\texteparacol}{ +m+m }{%
+    \smallskip%
+       \begin{paracol}{2}
+           #1
+           \switchcolumn
+    #2
+    \end{paracol}}
+   
+
+\begin{document}
+
+
+\gscore[]{1.}{Domine_salvum_fac}
+
+\textit{O Lord, save Charles our King. And hear us in the day when we shall call upon thee.
+}
+
+
+\texteparacol{Orémus.
+
+\lettrine[depth=1]{Q}{u}ǽsumus, omnípotens Deus, ut fámulus tuus Carólus Rex noster, qui tua miseratióne suscépit regni gubernácula, virtútum étiam ómnium percípiat increméntum; quibus decénter ornátus, et vitiórum monstra devitáre, (\textit{in tempore belli:} hostes superáre), et ad te qui via, véritas, et vita es, cum Regína consórte et prole régia gratiósus váleat perveníre. Per Christum Dóminum nostrum. 
+
+\rr Amen.}{\begin{otherlanguage}{english}
+\noindent Let us pray.\@ We beseech thee, almighty God, that thy servant Charles our King, who through thy mercy has undertaken the government of this realm, may also receive an increase of all virtues. Fittingly adorned with these, may he be able to shun all evildoing, (in time of war: to vanquish his enemies,) and, together with the Queen his consort and the royal family, being in thy grace, to come unto thee who art the way, the truth, and the life. Through Christ our Lord. Amen.
+\end{otherlanguage}}
+
+\enddocument
