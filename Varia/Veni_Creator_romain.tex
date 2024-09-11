@@ -1,0 +1,47 @@
+% !TEX TS-program = lualatexmk
+% !TEX parameter =  --shell-escape
+\documentclass[11pt]{book}
+\usepackage[a5paper]{geometry}
+%\pagenumbering{gobble}
+\usepackage{fontspec}
+\usepackage[ecclesiasticlatin.usej]{babel}
+     \babelprovide[hyphenrules=latin]{ecclesiasticlatin}
+          \usepackage{lettrine}
+\usepackage[autocompile]{gregoriotex}
+\def\GreStar{*}
+\def\GreDagger{†}
+%\gresetheadercapture{annotation}{greannotation}{string}
+%
+\AtBeginDocument{\setlength{\parindent}{1em}} 
+
+\setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
+ItalicFont= EB Garamond Italic,
+BoldFont= EB Garamond Bold,
+Ligatures=Rare,
+Numbers=Proportional,
+Numbers=OldStyle]
+
+\NewDocumentCommand{\rubrique}{m}{{\fontsize{8}{10}\selectfont\textit{#1}}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\rubrique{The celebrant intones, and the cantors continue. The people may join the schola on even verses.}
+
+\rubrique{Vowels in italics are not pronounced; the consonant is pronounced with the following vowel as in v. 4, or the usual melody is sung, which is the case in v. 6.}
+
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\greannotation{Hy.}
+\greannotation{8.}
+\gregorioscore{partitions/hy_veni_creator_spiritus_solesmes}
+
+℣. Emítte Spíritum tuum, et creabúntur.
+
+℟. Et renovábis fáciem terræ.
+
+Orémus.
+
+\lettrine{D}{e}us, qui corda fidélium Sancti Spíritus illustratióne docuísti:~† da nobis in eódem Spíritu re\-cta sápere,~* et de ejus semper consolatióne gaudére. Per Christum Dóminum nostrum. ℟. Amen.
+
+\end{document}

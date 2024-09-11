@@ -1,0 +1,66 @@
+% !TEX TS-program = lualatexmk
+% !TEX parameter =  --shell-escape
+\documentclass[11pt]{book}
+\usepackage[a5paper]{geometry}
+%\pagenumbering{gobble}
+\usepackage{fontspec}
+\usepackage[ecclesiasticlatin.usej]{babel}
+     \babelprovide[hyphenrules=latin]{ecclesiasticlatin}
+     \usepackage{lettrine}
+\usepackage[autocompile]{gregoriotex}
+\def\GreStar{*}
+\def\GreDagger{†}
+%% fine-tuning of space beween the staff and the text above lines (used for Magnificats; needs to be rethought (again, should 2 and 3 be raised or not?) and worked into \smallscore
+\newcommand{\altraise}{-0.2cm} %% default is -0.1cm MB value is -0.2
+\grechangedim{abovelinestextraise}{\altraise}{scalable}
+%
+\newcommand{\altheight}{0.5cm} %% default is 0.3cm and value must be bigger than text height; this should fix the problem. but needs further investigation.
+\grechangedim{abovelinestextheight}{\altheight}{scalable} %% this is a very finicky command.
+
+%\gresetheadercapture{annotation}{greannotation}{string}
+%
+\AtBeginDocument{\setlength{\parindent}{1em}} 
+
+\setmainfont{EB Garamond}[UprightFont=EB Garamond Regular,
+ItalicFont= EB Garamond Italic,
+BoldFont= EB Garamond Bold,
+Ligatures=Rare,
+Numbers=Proportional,
+Numbers=OldStyle]
+
+\NewDocumentCommand{\rubrique}{m}{{\fontsize{8}{10}\selectfont\textit{#1}}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\rubrique{The celebrant intones, and the cantors continue. The people may join the schola on alternating verses, which begin at double bar lines.}
+
+\grechangestyle{initial}{\fontsize{28}{28}\selectfont}
+\greannotation{Hy.}
+\greannotation{3.}
+\gregorioscore{partitions/hy_te_deum_solemn_solesmes}
+
+℣. Benedicámus Patrem et Fílium cum San\-cto Spíritu.
+
+℟. Laudémus et superexaltémus eum in sǽcula.
+
+℣. Benedí\-ctus es Dómine in firmaménto cæli.
+
+℟. Et laudábilis, et gloriósus, et superexaltátus in sǽcula.
+
+℣. Dómine exáudi oratiónem meam.
+
+℟. Et clamor meus ad te véniat.
+
+℣. Dóminus vobíscum.
+
+℟. Et cum spíritu tuo.
+
+
+Orémus.
+
+\lettrine{D}{e}us, cujus misericórdiæ non est númerus, et bonitátis infinítus est thesáurus:~† piíssimæ majestáti tuæ pro collátis donis grátias ágimus, tuam semper cleméntiam exorántes;~* ut qui peténtibus postuláta concédis, eósdem non déserens, ad prǽmia futúra dispónas. Per Christum Dóminum nostrum.  ℟. Amen.
+
+
+\end{document}
