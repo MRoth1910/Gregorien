@@ -2,8 +2,6 @@
 
 %% for personal reasons, the commands are a mix of French and English names. Feel free to choose one or the other if you make use of them. This file is subject to change later on.
 
-%% This is the format of the recent Solesmes books.
-%\usepackage[paperwidth=6in, paperheight=9in]{geometry}
 \usepackage{geometry}
 \usepackage{fontspec}
 \usepackage[ecclesiasticlatin.usej]{babel}
@@ -19,8 +17,10 @@
 %\usepackage{xstring}
 \usepackage{enumitem} %% nécessaire pour les textes des psaumes.
 \usepackage{lettrine}
-\usepackage{tocloft}
+\usepackage{tocloft}%%to fix toc title. titlesec companion packages could also work.
 \usepackage{indentfirst}%% to allow for \section with indented 1st paragraphs in good Franco-Latin style (LaTeX default is to suppress this. Package sets  \@afterindentfalse to (always) true.
+\usepackage[savepos]{zref}
+\usepackage{lettrine}
 \usepackage{hyperref}
 \usepackage{refcount}
 
@@ -41,6 +41,11 @@ bottom=1.25in,
 headsep=0.75in
 } %%
 
+%% General scale of all graphical elements. Also borrowed from MB
+%% Values different from 1 are largely untested.
+%% Used in those commands (e.g. everything FontSpec) that use a scale parameter.
+\newcommand{\customscale}{1}
+
 \AtBeginDocument{\setlength{\parindent}{1em}} %% should set 1em to EB Garamond not Computer Modern.
 
 %%%%%%%%%%%%%%% GREGORIO CONFIG %%%%%%%%%%%%%%%
@@ -50,25 +55,29 @@ headsep=0.75in
 %% sets * and † to font called via fontspec
 \def\GreStar{*}
 \def\GreDagger{†}
-%\gresetspecial{cross}{\grecross} %% to use cross from Gregorio fonts which is thin and doesn't especially match text well.
 
-\gresetcustosalteration{invisible} %%need to keep custos as such and not a clef when following line begins with a flat.
+%% should prevent flat turning custos into a clef, as Solesmes  uses an altered custos in only one chant per Élie Roux.
+\gresetcustosalteration{invisible}
 
 %produces a score with a smaller initial (default is 40 pt) and annotations like in the Solesmes books; the 1st is optional and can be omitted as needed.
  \NewDocumentCommand{\gscore}{O{}mm}{%
  \greannotation{#1}%
 \greannotation{#2}%
 \grechangestyle{initial}{\fontsize{28}{28}\selectfont}%
- \gregorioscore{partitions/#3}}
+ \gregorioscore{partitions/#3}%
+\grechangedim{initialraise}{0cm}{scalable}}
  
  
   \NewDocumentCommand{\lectionscore}{O{}m}{%
+    \grechangedim{initialraise}{0.15cm}{scalable}%
    \grecommentary{#1}%
   \grechangestyle{initial}{\fontsize{36}{36}\selectfont}%
-  \gregorioscore{partitions/#2}}
+  \gregorioscore{partitions/#2}%
+  \grechangedim{initialraise}{0cm}{scalable}}
  
  %% default should be 40, if not using, annotations need to be turned off in gabc. For the first antiphon of the office, Gospel canticle etc. (initial is both to refer to first and the large illustrated initial, used sometimes with an annotation, cf. Christus factus est of Tenebrae in the ritus monasticus.
   \NewDocumentCommand{\initialscore}{O{}m}{%
+  \grechangedim{initialraise}{0.5cm}{scalable}%
   \greannotation{#1}%
    \grechangestyle{initial}{\fontspec{EB Garamond Initials}\fontsize{45}{45}\selectfont}%
  \gregorioscore{partitions/#2}}
@@ -142,39 +151,115 @@ Numbers=OldStyle] %% all \kern numbers are based on this and can be removed if t
   %% text must be written {\symbolfont{+}} (you can use V and R as well) but may conflict as + is † in gabc. Cross should be \small or even \footnotesize
 
 
-%%% Typographical Commands %%%%
+%%% TYPOGRAPHICAL AND SYMBOL COMMANDS  %%%%
 
-%%for proper spacing of all-cagr letters to prevent clashes, e.g. serif strokes touching.
+%% \P is pilcrow and is defined in LaTeX as is.
+%% Add {\textcolor{gregoriocolor} as first part of command's definition if changing to red.
+
+
+%%for proper spacing of all-caps letters to prevent clashes, e.g. serif strokes touching.
 
 \NewDocumentCommand\capspace{m}{{\addfontfeature{LetterSpace=5.0}{#1}}}
 \NewDocumentCommand\scspace{m}{\textsc{{{\addfontfeature{LetterSpace=5.0}{#1}}}}}
 
-%%rubrics: black italics, smaller than body of psalms etc
-
-\NewDocumentCommand{\rubrique}{m}{{\fontsize{10}{12}\selectfont\textit{#1}}}
-
-%\NewDocumentCommand{\rubrique}{m}{{\scriptsize\textit{#1}}}
 
 %% macro to print Alleluia for versicles.
 \NewDocumentCommand{\tpalleluia}{}{(\textit{T.P.} Allelúia.)}
 
+\newcommand{\specialcharhsep}{3mm} % space after invoking R/ or V/ or A/ outside rubrics
+%\newcommand{\vv}{\textcolor{gregoriocolor}{\fontspec[Scale=\customscale]{Charis SIL}℣.\nolinebreak[4]\hspace{\specialcharhsep}\nolinebreak[4]}} %% format from MB
+
+\newcommand{\vv}{{\normalfont ℣.\nolinebreak[4]\hspace{\specialcharhsep}\nolinebreak[4]}}
+\newcommand{\rr}{{\normalfont ℟.\nolinebreak[4]\hspace{\specialcharhsep}\nolinebreak[4]}}
+
+%% typesets a cross pattée.
+\NewDocumentCommand{\cc}{}{%
+    % Grouping to keep font changes local
+    {%
+        % Ensure we're not in italics (since liturgy.ttf doesn't have italic)
+        \normalfont%
+        % Select the font liturgy.ttf
+        \symbolfont%
+        % Set the size
+        \footnotesize%
+        % In liturgy.ttf, the plus (+) is a cross pattée
+        +%
+    }%    
+} %%  can replace <+> with <U+2720> (see above) if a suitable font is found (or EB Garamond font is fixed); command will be useful in lieu of typing the Unicode.
+%% use <v> tag to insert into a gabc score (usually for the faithful or for blessings, e.g. the font.
+
+%% Same special characters, for in-score use (<sp>V/ R/ A/ +</sp>)
+
+\gresetspecial{V/}{{\fontspec[Scale=\customscale]{EB Garamond}℣.~}}
+\gresetspecial{R/}{{\fontspec[Scale=\customscale]{EB Garamond}℟.~}}
+\gresetspecial{+}{{\fontspec[Scale=\customscale]{EB Garamond}†~}}
+\gresetspecial{*}{\gresixstar}
+\gresetspecial{cross}{\cc}
+
+%% Same special characters, for use in rubrics (no space)
+
+\newcommand{\vvrub}{{\normalfont ℣.~}}
+\newcommand{\rrrub}{{\normalfont ℟.~}}
+
+%%rubrics: black italics, smaller than body of psalms etc
+
+\NewDocumentCommand{\rubrique}{m}{%
+    {%
+        \fontsize{10}{12}%
+        \selectfont%
+        \textit{%
+        %
+        #1%
+    }%
+    }}
+    
 %% macro to print normal text inside of rubric (name of a chant or prayer, etc.)
 
-\NewDocumentCommand{\normaltext}{m}{{\normalfont\fontsize{10}{12}\selectfont{#1}}}
-
-
-
+\NewDocumentCommand{\normaltext}{m}{%
+    {%
+        \normalfont%
+        #1%
+    }%
+    }
+    
 %% in case something should be bolded inside of a rubrique
-\NewDocumentCommand{\rubriquegras}{m}{{\fontsize{10}{12}\selectfont\textbf{#1}}}
+\NewDocumentCommand{\rubriquegras}{m}{%
+    {%
+        \normalfont%
+\textbf{#1%
+}%
+}}
 
 %% to print in red instead of italicizing
-\NewDocumentCommand{\rouge}{m}{\textcolor{gregoriocolor}{\fontsize{10}{12}\selectfont{#1}}}
+\NewDocumentCommand{\rouge}{m}{%
+\textcolor{gregoriocolor}%
+{\fontsize{10}{12}%
+\selectfont{%
+#1%
+}%
+}}
 
 %% to print in black within rouge group.
-\NewDocumentCommand{\textenoir}{m}{\textcolor{black}{\fontsize{10}{12}\selectfont\normalfont{#1}}}
+
+%\NewDocumentCommand{\textenoir}{m}{%
+
+\NewDocumentCommand{\textenoir}{m}{%
+\textcolor{black}%
+{%
+\normalfont%
+#1%
+}%
+}
 
 %% rouge but in italic (this is technically not correct).
-\NewDocumentCommand{\rougeit}{m}{\textcolor{gregoriocolor}{\fontsize{10}{12}\selectfont\textit{#1}}}
+\NewDocumentCommand{\rougeit}{m}{%
+\textcolor{gregoriocolor}%
+{\fontsize{10}{12}%
+\selectfont%
+\textit{#1%
+}%
+}}
+
 
 %\newcommand{\rubriquegras}[1]{{\fontsize{9}{11}\selectfont\textbf{#1}}}
 
@@ -259,7 +344,7 @@ Numbers=OldStyle] %% all \kern numbers are based on this and can be removed if t
     \NewDocumentCommand{\canticum}{mmmm}{
 	\needspace{4\baselineskip}
 	\smalltitle{Canticum #1.}
-	 \grecommentary{#2}
+	 \grecommentary{#2.}
 	\smallscore[n]{#3}
 	\pstexte{#4}
 }
@@ -357,6 +442,47 @@ Numbers=OldStyle] %% all \kern numbers are based on this and can be removed if t
 
 \NewDocumentCommand{\pateravecredo}{}{\large{Pater noster, Ave María, \textit{et} Credo.}}
 
+%%for litanies
+\makeatletter  
+\newcounter{score}
+\newcounter{tabstop}[score]
+\newcommand{\grealign}{%
+	\@bsphack%
+	\ifgre@boxing\else%
+		\kern\gre@dimen@begindifference%
+		\stepcounter{tabstop}%
+		\expandafter\zsavepos{stop-\thescore-\thetabstop}%
+		\kern-\gre@dimen@begindifference%
+	\fi%
+	\@esphack%
+}
+
+\newcommand{\setstops}{%
+  \gdef\nstabbing@stops{%
+    \hspace*{-\oddsidemargin}\hspace{-1in}%
+    \hspace*{\zposx{stop-\thescore-1} sp}\=%
+  }%
+  \count@=\@ne
+  \loop\ifnum\count@<\value{tabstop}%
+    \begingroup\edef\x{\endgroup
+      \noexpand\g@addto@macro\noexpand\nstabbing@stops{%
+        \noexpand\hspace{-\noexpand\zposx{stop-\thescore-\the\count@} sp}%
+        \noexpand\hspace{\noexpand\zposx{stop-\thescore-\the\numexpr\count@+1} sp}\noexpand\=%
+      }%
+    }\x
+    \advance\count@\@ne
+  \repeat
+  \nstabbing@stops\kill
+}
+\makeatother
+
+\newenvironment{nstabbing}
+  {\setlength{\topsep}{0pt}%
+   \setlength{\partopsep}{0pt}%
+   \tabbing%
+   \setstops}
+  {\endtabbing\stepcounter{score}}
+
 \makeatletter
 \newcounter{blankpages} %% should remove number on blank page at end of preface. Cf https://tex.stackexchange.com/questions/250761/how-to-not-count-blank-pages-in-frontmatter-of-two-sided-document
 \def\cleardoublepage{%
@@ -376,7 +502,7 @@ Numbers=OldStyle] %% all \kern numbers are based on this and can be removed if t
 }
 \makeatother
 
-\providecommand\phantomsection{} %% should make hyperref work properly %%only works with addcontentsline, not withsection etc alone
+\providecommand\phantomsection{} %% should make hyperref work properly %%only works with section etc., not with label etc. (that requires \phantomsection
 %
-\renewcommand{\contentsname}{\hfill\bfseries\LARGE Index\hfill\null} 
+\renewcommand{\contentsname}{\hfill\bfseries\LARGE Index Generalis.\hfill\null}  %% modifies TOC title
 \renewcommand{\cfttoctitlefont}{\hfil\LARGE}
