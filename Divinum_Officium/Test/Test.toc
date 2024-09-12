@@ -1,5 +1,0 @@
-\@ifundefined {tof@begin}{\global \let \tof@begin \relax \global \let \tof@finish \@empty \global \let \tof@starttags \@gobble \global \let \tof@stoptags \@gobble \global \let \tof@tagthis \@gobble \global \let \tof@untagthis \@gobble }{}
-\tof@begin 
-\contentsline {section}{Vêpres}{1}{Doc-Start}%
-\thispagestyle {empty}
-\tof@finish 
