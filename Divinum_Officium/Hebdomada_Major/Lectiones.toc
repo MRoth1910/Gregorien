@@ -1,5 +1,0 @@
-\babel@toc {ecclesiasticlatin}{}\relax 
-\contentsline {section}{Feria V in Cœna Domini.}{1}{section*.1}%
-\contentsline {section}{Feria VI in Parasceve.}{7}{section*.2}%
-\contentsline {section}{Sabbato Sancto.}{13}{section*.3}%
-\thispagestyle {empty}
