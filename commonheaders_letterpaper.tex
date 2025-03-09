@@ -8,7 +8,7 @@
      \babelprovide[hyphenrules=latin]{ecclesiasticlatin}
 %          \usepackage{xspace} %% better to use {} after certain macros (or even within defintion 
      \usepackage{multicol}
-%\usepackage{paracol}
+\usepackage{paracol}
 %\footnotelayout{m} %% this allows merged footnote if text is in parallel columns (mostly translations)
 \usepackage{fancyhdr}
 \usepackage{needspace} %%pour réserver de l'espace en bas de page ; ça évite des séparations entre les titres et la partition ou le texte qui les suivent.
@@ -20,7 +20,6 @@
 \usepackage{tocloft}%%to fix toc title. titlesec companion packages could also work.
 \usepackage{indentfirst}%% to allow for \section with indented 1st paragraphs in good Franco-Latin style (LaTeX default is to suppress this. Package sets  \@afterindentfalse to (always) true.
 \usepackage[savepos]{zref}
-\usepackage{lettrine}
 \usepackage{hyperref}
 \usepackage{refcount}
 
@@ -33,7 +32,7 @@
 %\setlength{\textwidth}{5.75in}
 
 \geometry{letterpaper}
-\geometry{bindingoffset=0.5in,
+\geometry{bindingoffset=0.25in,
 inner=1in,
 outer=1.35in,
 top=1.25in,
@@ -89,6 +88,35 @@ headsep=0.75in
   \gresetinitiallines{1}
 }
 
+\NewDocumentCommand{\zerobaroffsettextleft}{}%
+{%
+\grechangedim{maxbaroffsettextleft}%
+{0cm}%
+{scalable}%
+}
+
+\NewDocumentCommand{\zerobaroffsettextright}{}%
+{%
+\grechangedim{maxbaroffsettextright}%
+{0cm}%
+{scalable}%
+}
+
+%%%the default for left bar offset is 0.3cm. Right is 0.15cm. This needs to be applied after a score where the bar offset is modified.
+
+\NewDocumentCommand{\resetbaroffsettextleft}{}%
+{%
+\grechangedim{maxbaroffsettextleft}%
+{0.3cm}%
+{scalable}%
+}
+
+\NewDocumentCommand{\resetbaroffsettextright}{}%
+{%
+\grechangedim{maxbaroffsettextright}%
+{0.15cm}%
+{scalable}%
+}
 
  \NewDocumentCommand{\MagAnnotation}{}{%
  \grechangedim{annotationseparation}{-0.01cm}{fixed}%
@@ -313,6 +341,24 @@ Numbers=OldStyle] %% all \kern numbers are based on this and can be removed if t
       \setlength{\columnsep}{3pc}
 %\setlength{\columnsep}{10pt}
 \setlength\columnseprule{0.4pt}
+
+\NewDocumentCommand{\scripture}{m}{%
+{\raggedleft{\textit{#1}%
+}%
+\par}%
+}
+
+
+    \NewDocumentCommand{\texteparacol}{ +mm+m }{%
+    \smallskip%
+       \begin{paracol}{2}
+           #1
+           \switchcolumn
+           \begin{otherlanguage}{#2}
+    #3
+    \end{otherlanguage}
+    \end{paracol}}
+    
     
     \NewDocumentCommand{\pstexte}{ m }{%
     \smallskip%
@@ -441,6 +487,28 @@ Numbers=OldStyle] %% all \kern numbers are based on this and can be removed if t
 \NewDocumentCommand{\secreto}{}{Pater noster. \rubrique{secreto.}}
 
 \NewDocumentCommand{\pateravecredo}{}{\large{Pater noster, Ave María, \textit{et} Credo.}}
+
+\NewDocumentCommand{\baselineskipvspace}{m}{%
+\vspace{1\baselineskip}%
+}
+
+\NewDocumentCommand{\baselineskipvspace}{m}{%
+\vspace{0.5\baselineskip}%
+}
+
+\NewDocumentCommand{\negativebaselineskipvspace}{m}{%
+\vspace{-1\baselineskip}%
+}
+
+\NewDocumentCommand{\tinyhspace}{}{%
+\hspace*{0.03em}%
+}
+
+%%spur because of n, u, etc.
+\NewDocumentCommand{\spurhspace}{}{%
+\hspace*{0.05em}%
+}
+
 
 %%for litanies
 \makeatletter  
